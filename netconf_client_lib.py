@@ -57,9 +57,9 @@ def debug_print(msg, no_cr=False):
     global global_debug
     if global_debug:
         if no_cr:
-            print msg,
+            print (msg,)
         else:
-            print msg
+            print (msg)
 
 def connect_ssh(host, port, user, passwd, device):
     if port is None:
@@ -78,7 +78,7 @@ def connect_ssh(host, port, user, passwd, device):
                                   username = user, 
                                   password = passwd,
                                   device_params = {'name':device_name})
-    except Exception, err:
+    except Exception as err:
         debug_print("failed (%s)\n" % str(err))
         return None
 
@@ -109,7 +109,7 @@ class NetconfClient():
         global_debug = debug
 
         if host is None:
-            print "ERROR: Agent address not provided!"
+            print ("ERROR: Agent address not provided!")
             return None
 
         if passwd is None:
@@ -157,7 +157,7 @@ class NetconfClient():
         debug_print("- Getting data...")
 
         if filter is None:
-            print "XR netconf agent does not support get request without filter!"
+            print ("XR netconf agent does not support get request without filter!")
             return False
 
         if '<get>' in filter:
@@ -248,7 +248,7 @@ class NetconfClient():
             self.request = request
             try:
                 result = self.session.dispatch(to_ele(request))
-            except Exception, err:
+            except Exception as err:
                 debug_print("failed (%s)\n" % str(err))
                 self.reply = to_xml(err.xml)
                 return False

@@ -29,10 +29,10 @@ def print_log(msg, no_cr=False, log_only=False):
 
     if not log_only:
         if no_cr:
-            print msg,
+            print (msg)
             sys.stdout.flush()
         else:
-            print msg
+            print (msg)
     logf.write(msg + '\n')
 
 class CLI(cmd.Cmd):
@@ -270,7 +270,7 @@ def oneline_mode(nc, request, response, dump):
     try:
         req = open(request, 'r')
     except:
-        print "ERROR: Unable to open " + request + "!"
+        print ("ERROR: Unable to open " + request + "!")
         return
 
     if response is not None:
@@ -281,7 +281,7 @@ def oneline_mode(nc, request, response, dump):
     try:
         res = open(res_file, 'w')
     except:
-        print "ERROR: Unable to open " + res_file + "!"
+        print ("ERROR: Unable to open " + res_file + "!")
         return
 
     req_str = req.read()
@@ -328,7 +328,7 @@ def oneline_mode(nc, request, response, dump):
         res.write(nc.reply)
         res.write('\n')
 
-    print "\nThe response is saved in '" + res_file + "'\n"
+    print ("\nThe response is saved in '" + res_file + "'\n")
 
 
 def nf_client(host, port=None, device=None, user=None, passwd=None, log=None,
@@ -344,7 +344,7 @@ def nf_client(host, port=None, device=None, user=None, passwd=None, log=None,
     try:
         logf = open(logfile, 'w')
     except:
-        print "ERROR: Unable to open " + logfile + "!"
+        print ("ERROR: Unable to open " + logfile + "!")
         return None
 
     # Create NetconfClient class instance and connect to netconf agent  
@@ -360,7 +360,7 @@ def nf_client(host, port=None, device=None, user=None, passwd=None, log=None,
         # Go interacive
         interacive_mode(nc)
 
-    print "The operation log is saved in '" + logfile + "'\n"
+    print ("The operation log is saved in '" + logfile + "'\n")
 
 if __name__ == "__main__":
     parser = optparse.OptionParser()
