@@ -249,8 +249,8 @@ class NetconfClient():
             try:
                 result = self.session.dispatch(to_ele(request))
             except Exception as err:
-                debug_print("failed (%s)\n" % str(err))
-                self.reply = to_xml(err.xml)
+                # debug_print("failed (%s)\n" % str(err))
+                self.reply = str(err) #to_xml(err.xml)
                 return False
                 #return (False, err)
 
